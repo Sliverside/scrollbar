@@ -1,0 +1,137 @@
+@import "variables";
+
+@each $name, $ps in $simple-scrollbars {
+
+  $selector : if($name != '#default#', '.ss-container.ss-' + $name, '.ss-container');
+  $rail-color: map-get($ps, 'rail-color');
+  $rail-width: map-get($ps, 'rail-width');
+  $rail-radius: map-get($ps, 'rail-radius');
+  $rail-transition: map-get($ps, 'rail-transition');
+  $handle-color: map-get($ps, 'handle-color');
+  $handle-width: map-get($ps, 'handle-width');
+  $handle-active-width: map-get($ps, 'handle-active-width');
+  $handle-radius: map-get($ps, 'handle-radius');
+  $handle-transition: map-get($ps, 'handle-transition');
+  $opacity: map-get($ps, 'opacity');
+  $hover-opacity: map-get($ps, 'hover-opacity');
+  $scrollbar-gap: map-get($ps, 'scrollbar-gap');
+  $gap: if($handle-width + $handle-active-width > $rail-width, $handle-width + $handle-active-width - $rail-width, 0px);
+
+    .ps {
+      padding-right: if($handle-width > $rail-width, $handle-width, $rail-width) + $scrollbar-gap;
+      .ps__rail-x {
+        height: $rail-width;
+        margin-bottom: $gap;
+      }
+      .ps__rail-y {
+        width: $rail-width;
+        margin-right: $gap;
+      }
+      .ps__thumb-x {
+        height: $handle-width;
+        &:active {
+          height: $handle-width + $handle-active-width;
+        }
+      }
+      .ps__thumb-y {
+        width: $handle-width;
+        &:active {
+          width: $handle-width + $handle-active-width;
+        }
+      }
+      .ps__thumb-x,
+      .ps__thumb-y {
+        background-color: $handle-color;
+        border-radius: $handle-radius;
+        transition: $handle-transition;
+      }
+      .ps__rail-x,
+      .ps__rail-y {
+        opacity: $opacity;
+        background-color: $rail-color;
+        border-radius: $rail-radius;
+        transition: $rail-transition;
+      }
+      &:hover > .ps__rail-x,
+      &:hover > .ps__rail-y,
+      &.ps--focus > .ps__rail-x,
+      &.ps--focus > .ps__rail-y,
+      &.ps--scrolling-x > .ps__rail-x,
+      &.ps--scrolling-y > .ps__rail-y {
+        opacity: $hover-opacity;
+      }
+    }
+
+}
+
+/*
+ * Container style
+ */
+.ps {
+  position: relative;
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+}
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+  display: none;
+  /* there must be 'bottom' or 'top' for ps__rail-x */
+  bottom: 0px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__rail-y {
+  display: none;
+  /* there must be 'right' or 'left' for ps__rail-y */
+  right: 0;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+  display: block;
+}
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+  /* there must be 'bottom' for ps__thumb-x */
+  bottom: 50%;
+  transform: translateY(50%);
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__thumb-y {
+  /* there must be 'right' for ps__thumb-y */
+  right: 50%;
+  transform: translateX(50%);
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__thumb-x,
+.ps__thumb-y {
+  cursor: pointer;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important;
+  }
+}

@@ -1,0 +1,96 @@
+.ps {
+  padding-right: 13px; }
+  .ps .ps__rail-x {
+    height: 8px;
+    margin-bottom: 2px; }
+  .ps .ps__rail-y {
+    width: 8px;
+    margin-right: 2px; }
+  .ps .ps__thumb-x {
+    height: 8px; }
+    .ps .ps__thumb-x:active {
+      height: 10px; }
+  .ps .ps__thumb-y {
+    width: 8px; }
+    .ps .ps__thumb-y:active {
+      width: 10px; }
+  .ps .ps__thumb-x,
+  .ps .ps__thumb-y {
+    background-color: #333;
+    border-radius: 100px;
+    -webkit-transition: width 100ms, height 100ms;
+    transition: width 100ms, height 100ms; }
+  .ps .ps__rail-x,
+  .ps .ps__rail-y {
+    opacity: 0.5;
+    background-color: rgba(51, 51, 51, 0.5);
+    border-radius: 100px;
+    -webkit-transition: opacity 200ms;
+    transition: opacity 200ms; }
+  .ps:hover > .ps__rail-x, .ps:hover > .ps__rail-y, .ps.ps--focus > .ps__rail-x, .ps.ps--focus > .ps__rail-y, .ps.ps--scrolling-x > .ps__rail-x, .ps.ps--scrolling-y > .ps__rail-y {
+    opacity: 1; }
+
+/*
+ * Container style
+ */
+.ps {
+  position: relative;
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  -ms-touch-action: auto;
+      touch-action: auto; }
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+  display: none;
+  /* there must be 'bottom' or 'top' for ps__rail-x */
+  bottom: 0px;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__rail-y {
+  display: none;
+  /* there must be 'right' or 'left' for ps__rail-y */
+  right: 0;
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+  display: block; }
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+  /* there must be 'bottom' for ps__thumb-x */
+  bottom: 50%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__thumb-y {
+  /* there must be 'right' for ps__thumb-y */
+  right: 50%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  /* please don't change 'position' */
+  position: absolute; }
+
+.ps__thumb-x,
+.ps__thumb-y {
+  cursor: pointer; }
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important; } }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important; } }
+
+/*# sourceMappingURL=scrollbar.css.map */

@@ -1,0 +1,13 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.scrollbar {
+  max-height: 200px;
+  max-width: 100%;
+  width: 500px;
+  position: relative;
+  overflow: auto;
+}

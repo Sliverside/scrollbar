@@ -1,0 +1,18 @@
+$simple-scrollbar:()!default;
+$simple-scrollbar: map-merge((
+  'rail-color': rgba(#333, 0.5),
+  'rail-width': 8px,
+  'rail-radius': 100px,
+  'rail-transition': opacity 200ms,
+  'handle-color': #333,
+  'handle-width': 8px,
+  'handle-active-width': 2px,
+  'handle-radius': 100px,
+  'handle-transition': (width 100ms, height 100ms),
+  'opacity': 0.5,
+  'hover-opacity': 1,
+  'scrollbar-gap': 5px,
+), $simple-scrollbar);
+
+$simple-scrollbars:()!default;
+$simple-scrollbars: map-merge(('#default#': $simple-scrollbar), $simple-scrollbars);
